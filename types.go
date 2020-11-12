@@ -75,7 +75,7 @@ type Context struct {
 	Name string `yaml:"name"`
 
 	// namespace in this context, if this value is empty, it will be set to 'default'
-	Namespace string `yaml:"namespace"`
+	Namespace string `yaml:"namespace,omitempty"`
 }
 
 // the defination of k8s config, its style is same to K8S kind/group:version
