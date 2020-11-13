@@ -8,7 +8,9 @@ When generating the k8s config file, the format of the config file was yaml. The
 
 First, please import this package,
 
-go get github.com/wh8199/kubeconfig-builder
+```makefile
+    go get github.com/wh8199/kubeconfig-builder
+```
 
 Then, you can generate config with some parameters
 
