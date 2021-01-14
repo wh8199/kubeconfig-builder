@@ -7,7 +7,7 @@ import (
 )
 
 func TestGenerateTokenConfig(t *testing.T) {
-	config, err := GenerateTokenConfig("test bearer token", "https://127.0.0.1:6443", "", "test-user", "test-cluster", true)
+	config, err := GenerateTokenConfig("test bearer token", "https://127.0.0.1:6443", "", "test-user", "test-cluster", "", true)
 	if err != nil {
 		t.Error(err)
 	}
@@ -22,7 +22,7 @@ func TestGenerateTokenConfig(t *testing.T) {
 }
 
 func TestGenerateTokenConfigWithTLS(t *testing.T) {
-	config, err := GenerateTokenConfig("test bearer token", "https://127.0.0.1:6443", "cacert", "test-user", "test-cluster", false)
+	config, err := GenerateTokenConfig("test bearer token", "https://127.0.0.1:6443", "cacert", "test-user", "test-cluster", "", false)
 	if err != nil {
 		t.Error(err)
 	}
@@ -37,7 +37,7 @@ func TestGenerateTokenConfigWithTLS(t *testing.T) {
 }
 
 func TestGenerateCertConfig(t *testing.T) {
-	config, err := GenerateCertConfig("https://127.0.0.1:6443", "", "clientcert", "clientkey", "test-user", "test-cluster", true)
+	config, err := GenerateCertConfig("https://127.0.0.1:6443", "", "clientcert", "clientkey", "test-user", "test-cluster", "", true)
 	if err != nil {
 		t.Error(err)
 	}
@@ -52,7 +52,7 @@ func TestGenerateCertConfig(t *testing.T) {
 }
 
 func TestGenerateCertConfigWithTLS(t *testing.T) {
-	config, err := GenerateCertConfig("https://127.0.0.1:6443", "cacert", "clientcert", "clientkey", "test-user", "test-cluster", false)
+	config, err := GenerateCertConfig("https://127.0.0.1:6443", "cacert", "clientcert", "clientkey", "test-user", "test-cluster", "", false)
 	if err != nil {
 		t.Error(err)
 	}
@@ -67,7 +67,7 @@ func TestGenerateCertConfigWithTLS(t *testing.T) {
 }
 
 func TestGenerateBasicAuthConfig(t *testing.T) {
-	config, err := GenerateBasciAuthConfig("https://127.0.0.1:6443", "", "admin", "admin-password", "test-cluster", true)
+	config, err := GenerateBasciAuthConfig("https://127.0.0.1:6443", "", "admin", "admin-password", "test-cluster", "", true)
 	if err != nil {
 		t.Error(err)
 	}
@@ -82,7 +82,7 @@ func TestGenerateBasicAuthConfig(t *testing.T) {
 }
 
 func TestGenerateBasicAuthConfigWithTLS(t *testing.T) {
-	config, err := GenerateBasciAuthConfig("https://127.0.0.1:6443", "cacert", "admin", "admin-password", "test-cluster", false)
+	config, err := GenerateBasciAuthConfig("https://127.0.0.1:6443", "cacert", "admin", "admin-password", "test-cluster", "", false)
 	if err != nil {
 		t.Error(err)
 	}

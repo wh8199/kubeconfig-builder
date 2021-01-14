@@ -16,7 +16,7 @@ import (
 		clustername: the display clustername of k8s clutser
 		skipCA: skip ca check or not, if this value is equal true, the cacert is ignored
 */
-func GenerateTokenConfig(token, server, cacert, username, clustername string, skipCA bool) ([]byte, error) {
+func GenerateTokenConfig(token, server, cacert, username, clustername, nsName string, skipCA bool) ([]byte, error) {
 	config := &K8SConfig{
 		APIVersion: "v1",
 		Kind:       "Config",
@@ -50,6 +50,10 @@ func GenerateTokenConfig(token, server, cacert, username, clustername string, sk
 		CurrentContext: username + "-" + clustername + "-context",
 	}
 
+	if nsName != "" {
+		config.Contexts[0].Namespace = nsName
+	}
+
 	data, err := yaml.Marshal(config)
 	if err != nil {
 		return nil, fmt.Errorf("Fail to generate k8s config: %s", err.Error())
@@ -69,7 +73,7 @@ func GenerateTokenConfig(token, server, cacert, username, clustername string, sk
 		clustername: the display clustername of k8s clutser
 		skipCA: skip ca check or not, if this value is equal true, the cacert is ignored
 */
-func GenerateCertConfig(server, cacert, clientcert, clientkey, username, clustername string, skipCA bool) ([]byte, error) {
+func GenerateCertConfig(server, cacert, clientcert, clientkey, username, clustername, nsName string, skipCA bool) ([]byte, error) {
 	config := &K8SConfig{
 		APIVersion: "v1",
 		Kind:       "Config",
@@ -104,6 +108,10 @@ func GenerateCertConfig(server, cacert, clientcert, clientkey, username, cluster
 		CurrentContext: username + "-" + clustername + "-context",
 	}
 
+	if nsName != "" {
+		config.Contexts[0].Namespace = nsName
+	}
+
 	data, err := yaml.Marshal(config)
 	if err != nil {
 		return nil, fmt.Errorf("Fail to generate k8s config: %s", err.Error())
@@ -122,7 +130,7 @@ func GenerateCertConfig(server, cacert, clientcert, clientkey, username, cluster
 		clustername: the display clustername of k8s clutser
 		skipCA: skip ca check or not, if this value is equal true, the cacert is ignored
 */
-func GenerateBasciAuthConfig(server, cacert, username, password, clustername string, skipCA bool) ([]byte, error) {
+func GenerateBasciAuthConfig(server, cacert, username, password, clustername, nsName string, skipCA bool) ([]byte, error) {
 	config := &K8SConfig{
 		APIVersion: "v1",
 		Kind:       "Config",
@@ -155,6 +163,10 @@ func GenerateBasciAuthConfig(server, cacert, username, password, clustername str
 			},
 		},
 		CurrentContext: username + "-" + clustername + "-context",
+	}
+
+	if nsName != "" {
+		config.Contexts[0].Namespace = nsName
 	}
 
 	data, err := yaml.Marshal(config)
