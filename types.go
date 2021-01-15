@@ -64,6 +64,9 @@ type ContextInfo struct {
 
 	// context name
 	User string `yaml:"user"`
+
+	// namespace in this context, if this value is empty, it will be set to 'default'
+	Namespace string `yaml:"namespace,omitempty"`
 }
 
 // k8s context
@@ -73,9 +76,6 @@ type Context struct {
 
 	//username
 	Name string `yaml:"name"`
-
-	// namespace in this context, if this value is empty, it will be set to 'default'
-	Namespace string `yaml:"namespace,omitempty"`
 }
 
 // the defination of k8s config, its style is same to K8S kind/group:version

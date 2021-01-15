@@ -51,7 +51,7 @@ func GenerateTokenConfig(token, server, cacert, username, clustername, nsName st
 	}
 
 	if nsName != "" {
-		config.Contexts[0].Namespace = nsName
+		config.Contexts[0].Context.Namespace = nsName
 	}
 
 	data, err := yaml.Marshal(config)
@@ -109,7 +109,7 @@ func GenerateCertConfig(server, cacert, clientcert, clientkey, username, cluster
 	}
 
 	if nsName != "" {
-		config.Contexts[0].Namespace = nsName
+		config.Contexts[0].Context.Namespace = nsName
 	}
 
 	data, err := yaml.Marshal(config)
@@ -166,7 +166,7 @@ func GenerateBasciAuthConfig(server, cacert, username, password, clustername, ns
 	}
 
 	if nsName != "" {
-		config.Contexts[0].Namespace = nsName
+		config.Contexts[0].Context.Namespace = nsName
 	}
 
 	data, err := yaml.Marshal(config)
